@@ -37,17 +37,16 @@ namespace Mars.Rover
             _queueManager.Add(new QueueMessage {RoverName = roverName, Commands = commands});
         }
 
-        public string Process()
+        public CommandResult Process()
         {
-            if (_rovers.Any(x => x.State.Status == Status.Moving)) return "A is moving";
+            if (_rovers.Any(x => x.State.Status == Status.Moving))
+                return new CommandResult {ErrorMessage = "A rover is moving"};
 
             var queue = _queueManager.Dequeue();
-            if (queue == null) return "";
-            if (!_rovers.Any(x => x.Name == queue.RoverName))
-                return $"No rover connected called as {queue.RoverName}";
-            return
-                $"Rover Name:{queue.RoverName} | {_rovers.First(x => x.Name == queue.RoverName).ApplyCommands(queue.Commands)}";
-
+            if (queue == null) return null;
+            return !_rovers.Any(x => x.Name == queue.RoverName)
+                ? new CommandResult {ErrorMessage = $"No rover connected called as {queue.RoverName}"}
+                : _rovers.First(x => x.Name == queue.RoverName).ApplyCommands(queue.Commands);
         }
     }
 }

@@ -6,10 +6,10 @@ namespace Mars.Rover
     {
         static void Main(string[] args)
         {
-            var rover1 = new Models.Rover {Name = "Curiosity"};
-            var rover2 = new Models.Rover {Name = "InSight"};
-            var rover3 = new Models.Rover {Name = "Spirit"};
-            var rover4 = new Models.Rover {Name = "Perseverance"};
+            var rover1 = new Models.Rover { Name = "Curiosity" };
+            var rover2 = new Models.Rover { Name = "InSight" };
+            var rover3 = new Models.Rover { Name = "Spirit" };
+            var rover4 = new Models.Rover { Name = "Perseverance" };
 
             var roverManager = RoverManager.GetInstance(QueueManager.Instance.Value).Value;
             roverManager.Connect(rover1);
@@ -20,7 +20,8 @@ namespace Mars.Rover
             var msg = "Started";
             while (msg != "")
             {
-                msg = roverManager.Process();
+                var result = roverManager.Process();
+                msg = result?.Rover != null ? $"Rover: {result.RoverName} | Last State: {result.Rover.State}" : "";
                 Console.WriteLine(msg);
             }
         }

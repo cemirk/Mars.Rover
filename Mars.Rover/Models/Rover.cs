@@ -14,14 +14,14 @@ namespace Mars.Rover.Models
             State = new State {Direction = Direction.N, Status = Status.Idle};
         }
 
-        public string ApplyCommands(string commands)
+        public CommandResult ApplyCommands(string commands)
         {
             var commandsArray = commands.Split(' ');
             if (commandsArray.Length < 6)
-                return "Invalid Command";
+                return new CommandResult {ErrorMessage = "Invalid Command"};
             Move(commandsArray);
             State.Status = Status.Idle;
-            return $"Given Command:{commands} Last State: {this.State}";
+            return new CommandResult {Rover = this, IsSuccess = true};
         }
 
         private void Move(string[] commands)

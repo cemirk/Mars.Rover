@@ -6,6 +6,6 @@ namespace Mars.Rover.Interfaces
     {
         string Name { get; set; }
         State State { get; set; }
-        string ApplyCommands(string commands);
+        CommandResult ApplyCommands(string commands);
     }
 }
