@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mars.Rover
+namespace Mars.Rover.Models
 {
     public class QueueMessage
     {

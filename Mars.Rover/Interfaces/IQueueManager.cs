@@ -1,4 +1,6 @@
-﻿namespace Mars.Rover
+﻿using Mars.Rover.Models;
+
+namespace Mars.Rover.Interfaces
 {
     public interface IQueueManager
     {

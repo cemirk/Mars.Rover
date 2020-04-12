@@ -6,10 +6,10 @@ namespace Mars.Rover
     {
         static void Main(string[] args)
         {
-            var rover1 = new Rover {Name = "Curiosity"};
-            var rover2 = new Rover {Name = "InSight"};
-            var rover3 = new Rover {Name = "Spirit"};
-            var rover4 = new Rover {Name = "Perseverance"};
+            var rover1 = new Models.Rover {Name = "Curiosity"};
+            var rover2 = new Models.Rover {Name = "InSight"};
+            var rover3 = new Models.Rover {Name = "Spirit"};
+            var rover4 = new Models.Rover {Name = "Perseverance"};
 
             var roverManager = RoverManager.GetInstance(QueueManager.Instance.Value).Value;
             roverManager.Connect(rover1);

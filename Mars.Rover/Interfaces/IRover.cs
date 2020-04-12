@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Mars.Rover.Models;
 
-namespace Mars.Rover
+namespace Mars.Rover.Interfaces
 {
     public interface IRover
     {

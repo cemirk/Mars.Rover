@@ -1,4 +1,4 @@
-﻿namespace Mars.Rover
+﻿namespace Mars.Rover.Models
 {
     public class State
     {

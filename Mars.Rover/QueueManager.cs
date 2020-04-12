@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Mars.Rover.Interfaces;
+using Mars.Rover.Models;
 
 namespace Mars.Rover
 {

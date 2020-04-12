@@ -1,6 +1,7 @@
 ﻿using System;
+using Mars.Rover.Interfaces;
 
-namespace Mars.Rover
+namespace Mars.Rover.Models
 {
     public class Rover : IRover
     {

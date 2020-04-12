@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
-namespace Mars.Rover
+﻿namespace Mars.Rover.Interfaces
 {
     public interface IRoverManager
     {
