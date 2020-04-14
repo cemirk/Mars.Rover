@@ -10,6 +10,7 @@
     public enum Status
     {
         Idle,
-        Moving
+        Moving,
+        Died
     }
 }

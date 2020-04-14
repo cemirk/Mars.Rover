@@ -44,9 +44,15 @@ namespace Mars.Rover
 
             var queue = _queueManager.Dequeue();
             if (queue == null) return null;
-            return !_rovers.Any(x => x.Name == queue.RoverName)
+            var result= !_rovers.Any(x => x.Name == queue.RoverName)
                 ? new CommandResult {ErrorMessage = $"No rover connected called as {queue.RoverName}"}
                 : _rovers.First(x => x.Name == queue.RoverName).ApplyCommands(queue.Commands);
+            if (result.Rover.State.Status == Status.Died)
+            {
+                DangerZoneDbRepo.Instance.Value.Add(result.Rover.State.X,result.Rover.State.Y);
+                result.ErrorMessage = $"RIP {result.Rover.Name}";
+            }
+            return result;
         }
     }
 }

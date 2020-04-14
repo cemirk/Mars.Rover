@@ -21,7 +21,7 @@ namespace Mars.Rover
             while (msg != "")
             {
                 var result = roverManager.Process();
-                msg = result?.Rover != null ? $"Rover: {result.RoverName} | Last State: {result.Rover.State}" : "";
+                msg = result?.Rover != null ? $"Rover: {result.Rover.Name} | Last State: {result.Rover.State}" : "";
                 Console.WriteLine(msg);
             }
         }

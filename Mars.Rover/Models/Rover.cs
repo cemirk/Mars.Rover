@@ -40,6 +40,7 @@ namespace Mars.Rover.Models
                 {
                     case 'M':
                         MoveForward(maxCoords);
+
                         break;
                     case 'L':
                         TurnLeft();
@@ -47,6 +48,11 @@ namespace Mars.Rover.Models
                     case 'R':
                         TurnRight();
                         break;
+                }
+
+                if (State.Status == Status.Died)
+                {
+                    break;
                 }
             }
         }
@@ -74,22 +80,47 @@ namespace Mars.Rover.Models
             switch (State.Direction)
             {
                 case Direction.N:
-                    if (State.Y + 1 <= maxY)
+                    if (State.Y + 1 >= maxY)
+                    {
+                        State.Status = Status.Died;
+                    }
+
+                    if (!CheckIfIDie(State.X, State.Y + 1))
                         State.Y += 1;
                     break;
                 case Direction.S:
                     if (State.Y - 1 >= 0)
+                    {
+                        State.Status = Status.Died;
+                    }
+
+                    if (!CheckIfIDie(State.X, State.Y + 1))
                         State.Y -= 1;
                     break;
                 case Direction.E:
-                    if (State.X + 1 <= maxX)
+                    if (State.X + 1 >= maxX)
+                    {
+                        State.Status = Status.Died;
+                    }
+
+                    if (!CheckIfIDie(State.X, State.Y + 1))
                         State.X += 1;
                     break;
                 case Direction.W:
                     if (State.X - 1 >= 0)
+                    {
+                        State.Status = Status.Died;
+                    }
+
+                    if (!CheckIfIDie(State.X, State.Y + 1))
                         State.X -= 1;
                     break;
             }
+        }
+
+        private bool CheckIfIDie(int stateX, int stateY)
+        {
+            return DangerZoneDbRepo.Instance.Value.IsRestricted(stateX, stateY);
         }
     }
 }

@@ -4,7 +4,6 @@ namespace Mars.Rover.Models
 {
     public class CommandResult
     {
-        public string RoverName { get; set; }
         public bool IsSuccess { get; set; }
         public string ErrorMessage { get; set; }
         public IRover Rover { get; set; }
@@ -15,8 +14,7 @@ namespace Mars.Rover.Models
         }
         private bool Equals(CommandResult obj)
         {
-            return this.IsSuccess == obj.IsSuccess 
-                   && this.RoverName == obj.RoverName 
+            return this.IsSuccess == obj.IsSuccess
                    && this.ErrorMessage==obj.ErrorMessage
                    && this.Rover.State.ToString() == obj.Rover.State.ToString();
         }
